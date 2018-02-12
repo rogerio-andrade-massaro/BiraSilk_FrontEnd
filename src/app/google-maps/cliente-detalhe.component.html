@@ -1,0 +1,136 @@
+<h2>
+    Editar</h2>
+
+
+<div class="form-horizontal">
+    <h4>Cliente</h4>
+    <hr />
+</div>
+<form (ngSubmit)="onSubmit()" #clienteForm="ngForm" novalidate>
+
+    <table>
+        <tr>
+            <td valign="top" width="60%">
+                <div class="form-horizontal">
+                    <div [ngClass]="getFormGroupClass(cpf.valid,cpf.pristine)">
+                        <input type="hidden" id="txtLatitude" name="txtLatitude" />
+                        <input type="hidden" id="txtLongitude" name="txtLongitude" />
+
+                        <div class="col-md-10">
+                            <label for="Cpf" class="form-control-label">Cpf</label>
+
+                            <input type="text" [textMask]="{mask: maskcpf}" [ngClass]="getFormControlClass(cpf.valid, cpf.pristine)" #cpf="ngModel" name="cpf"
+                                [(ngModel)]="cliente.cpf" required class="form-control form-control-danger" placeholder="Informe o CPF">
+
+                            <div class="" [hidden]="cpf.valid || cpf.pristine">O campo nome deve ser informado</div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Nome">Nome</label>
+                            <input type="text" required name="nome" [(ngModel)]="cliente.nome" class="form-control" placeholder="Informe o nome">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Endereco">Endereço</label>
+                            <input type="text" name="endereco" [(ngModel)]="cliente.endereco" class="form-control" placeholder="Informe o Endereco" autocorrect="off"
+                                autocapitalize="off" spellcheck="off" type="text" class="form-control" #Endereco>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Numero">Numero</label>
+                            <input type="text" name="numero" [(ngModel)]="cliente.numero" class="form-control" placeholder="Informe o numero">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Complemento">Complemento</label>
+                            <input type="text" class="form-control" name="complemento" [(ngModel)]="cliente.complemento" placeholder="Informe o Complemento">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Bairro">Bairro</label>
+                            <input type="text" [(ngModel)]="cliente.bairro" name="bairro" class="form-control" placeholder="Informe o Bairro" #Bairro>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Cidade">Cidade
+         </label>
+                            <input #Cidade type="text" [(ngModel)]="cliente.cidade" name="cidade" class="form-control" placeholder="Informe a Cidade">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Estado">Estado</label>
+                            <input #Estado [(ngModel)]="cliente.estado" type="text" name="estado" class="form-control" placeholder="Informe o Estado">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="Cep">Cep</label>
+                            <input [textMask]="{mask: maskcep}" #Cep [(ngModel)]="cliente.cep" name="cep" type="text" class="form-control cep" placeholder="Informe o Cep">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="TelRes">Telefone Res.</label>
+                            <input [textMask]="{mask: maskPhoneSpecial}" [(ngModel)]="cliente.telRes" name="TelRes" type="text" class="form-control" placeholder="Informe o telefone Res">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label for="TelCel">Telefone Cel.</label>
+                            <input [textMask]="{mask: maskPhoneSpecial}" [(ngModel)]="cliente.telCel" name="TelCel" type="text" class="form-control" placeholder="Informe o telefone cel">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                <label for="Ativo">Ativo</label>
+                                <input type="checkbox" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+            <td  align="center" valign="top">
+                <agm-map  [style.visibility]="(lat == 0 && long == 0) ? 'hidden' : 'visible'" #agpMap [latitude]="lat" [longitude]="long" [scrollwheel]="false" [zoom]="zoom">
+                    <agm-marker #agpMarker [latitude]="lat" [longitude]="long"></agm-marker>
+                </agm-map>
+            </td>
+            <td  align="center" valign="top">
+                <app-google-maps>
+                </app-google-maps>
+            </td>
+
+        </tr>
+    </table>
+
+    <button type="submit" class="btn btn-success" [disabled]="!clienteForm.form.valid">Salvar</button>
+    <a class="btn btn-secondary" routerLink="/">Voltar </a>
+
+</form>

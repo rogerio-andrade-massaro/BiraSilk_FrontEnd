@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <a href="/cliente/salvar" class="btn btn-success">Novo</a>
+            <table *ngIf="clientes.length > 0" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cpf</th>
+                        <th>Telefone</th>
+                        <th>Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of clientes" [routerLink]= "['/cliente/salvar',c.clienteId]">
+                        <td>{{c.nome}}</td>
+                        <td>{{mascaras.format(c.cpf, "###.###.###-##")}}</td>
+                        <td>{{mascaras.format(c.telRes, "(##)####-####")}}</td>
+                        <td><button class="btn btn-danger" (click)="onDelete(c); $event.stopPropagation()">Deletar</button></td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<dialog-box #dialog ></dialog-box>

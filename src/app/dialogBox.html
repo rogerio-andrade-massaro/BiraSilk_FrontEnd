@@ -1,0 +1,12 @@
+
+<modal #modal (onClose)="funcaoClose()" (onDismiss)="funcao()" >
+    <modal-header [show-close]="false">
+        <h4 class="modal-title">Atenção</h4>
+    </modal-header>
+    <modal-body>
+        <label style="font-size: 16px;color: midnightblue">{{ mensagem }}</label>       
+    </modal-body>
+    <modal-footer #modalFooter [show-default-buttons]="showDefaultButtons">
+        <button *ngIf="showDefaultButtons == false" type="button" class="btn btn-primary" (click)="modal.close()">Ok</button>
+    </modal-footer>
+</modal>

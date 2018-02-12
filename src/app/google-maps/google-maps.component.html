@@ -1,0 +1,3 @@
+<agm-map  [style.visibility]="(lat == 0 && long == 0) ? 'hidden' : 'visible'" #agpMap [latitude]="lat" [longitude]="long" [scrollwheel]="false" [zoom]="zoom">
+    <agm-marker #agpMarker [latitude]="lat" [longitude]="long"></agm-marker>
+</agm-map>
